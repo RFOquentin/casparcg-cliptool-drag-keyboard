@@ -19,7 +19,7 @@ function defaultOutputs(amount: number): Output[] {
 
 export function media(
     state: MediaState = defaultMediaState(),
-    action: any
+    action: any,
 ): MediaState {
     let nextState: MediaState = { ...state }
     switch (action.type) {
@@ -53,6 +53,14 @@ export function media(
                 })
             }
             return nextState
+        // Ajout du nouveau cas pour UPDATE_MEDIA_FILES_ORDER
+        case IO.UPDATE_MEDIA_FILES_ORDER:
+            if (doesMediaOutputChannelExist(nextState, action.channelIndex)) {
+                return updateAttributeByPartial(state, nextState, action, {
+                    mediaFiles: action.mediaFiles,
+                })
+            }
+            return nextState
 
         default:
             return nextState
@@ -61,7 +69,7 @@ export function media(
 
 function doesMediaOutputChannelExist(
     nextState: MediaState,
-    channelIndex: number
+    channelIndex: number,
 ): boolean {
     return nextState.outputs.length > channelIndex
 }
@@ -70,7 +78,7 @@ function updateAttributeByPartial(
     originalState: MediaState,
     nextState: MediaState,
     action: any,
-    updates: Partial<Output>
+    updates: Partial<Output>,
 ): MediaState {
     const outputs = [...originalState.outputs]
     outputs[action.channelIndex] = {

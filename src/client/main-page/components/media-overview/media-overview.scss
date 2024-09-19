@@ -6,7 +6,6 @@
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: center;
@@ -14,7 +13,14 @@
   padding-left: 0;
 }
 
+.sort-dropdown {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;  /* Espace entre le menu et les cartes */
+}
+
 .c-media-overview__card {
+  cursor: grab; /* Indique que la carte est draggable */
   position: relative;
   background: var(--thumbnail-background-color);
   color: white;
@@ -22,12 +28,17 @@
   width: 300px;
   margin: 5px;
   font-size: 0.9em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Assure que l'image et le texte sont bien espacés */
+  padding: 10px; /* Ajoute un peu de padding à l'intérieur de la carte */
 
   &.hidden {
     scale: 0.8;
     opacity: 70%;
     background: var(--hidden-thumbnail-background-color);
-  
+
     .c-image-media-card__image {
       filter: grayscale(1);
     }
@@ -36,4 +47,22 @@
       border-color: var(--hidden-thumbnail-background-color);
     }
   }
+}
+
+.c-media-overview__image {
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  height: 200px; /* Ajuste la hauteur selon ton besoin */
+}
+
+/* Le style pour .c-media-overview__drag-corner a été supprimé */
+
+.c-media-overview__card-title {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;  /* Assure que le texte s'adapte à la largeur de la carte */
+  margin-top: 5px;  /* Espace entre l'image et le texte */
 }

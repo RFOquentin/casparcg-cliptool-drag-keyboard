@@ -5,12 +5,12 @@ export const UPDATE_THUMBNAIL_LIST = 'updateThumbnailList'
 export const UPDATE_FOLDER_LIST = 'updateFolders'
 export const UPDATE_HIDDEN_FILES = 'updateHiddenFiles'
 export const SET_NUMBER_OF_OUTPUTS = 'setNumberOfOutputs'
-
 export const SET_TIME = 'setTime'
+export const UPDATE_MEDIA_FILES_ORDER = 'updateMediaFilesOrder' // Nouvelle action
 
 export function updateMediaFiles(
     channelIndex: number,
-    fileList: MediaFile[]
+    fileList: MediaFile[],
 ): { type: string; channelIndex: number; files: MediaFile[] } {
     return {
         type: UPDATE_MEDIA_FILES,
@@ -31,7 +31,7 @@ export function updateFolders(folders: string[]): {
 
 export function updateThumbnailFileList(
     channelIndex: number,
-    fileList: ThumbnailFile[]
+    fileList: ThumbnailFile[],
 ): { type: string; channelIndex: number; fileList: ThumbnailFile[] } {
     return {
         type: UPDATE_THUMBNAIL_LIST,
@@ -62,11 +62,23 @@ export function setNumberOfOutputs(amount: number): {
 
 export function setTime(
     channelIndex: number,
-    time: [number, number]
+    time: [number, number],
 ): { type: string; channelIndex: number; time: [number, number] } {
     return {
         type: SET_TIME,
         channelIndex: channelIndex,
         time: time,
+    }
+}
+
+// Nouvelle fonction d'action pour mettre à jour l'ordre des fichiers média
+export function updateMediaFilesOrder(
+    channelIndex: number,
+    mediaFiles: MediaFile[],
+): { type: string; channelIndex: number; mediaFiles: MediaFile[] } {
+    return {
+        type: UPDATE_MEDIA_FILES_ORDER,
+        channelIndex: channelIndex,
+        mediaFiles: mediaFiles,
     }
 }
