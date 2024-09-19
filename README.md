@@ -30,6 +30,19 @@ To read about the Cliptool Gateway, take a look at its separate [README](Gateway
     -   [Touch Support](#touch-support)
 -   [Noteworthy Packages](#noteworthy-packages)
 
+## New Features
+
+### Drag-and-Drop Reordering:
+It is now possible to reorder media files by simply dragging and dropping them within the interface.
+
+### Keyboard Shortcuts:
+- **Numpad1**: Cue a media item.
+- **Numpad0**: Play a media item.
+- If an item is already cued, pressing **Numpad1** will cue the next item, and **Numpad0** will play it.
+- If an item is already playing, pressing **Numpad1** will cue the currently selected item, and **Numpad0** will skip to the next one.
+- Keyboard shortcuts are disabled when in manual mode.
+
+
 ## Installing Cliptool
 
 Cliptool is prebuilt for Windows. Simply download the desired version from the [release page](https://github.com/tv2/casparcg-cliptool/releases).
