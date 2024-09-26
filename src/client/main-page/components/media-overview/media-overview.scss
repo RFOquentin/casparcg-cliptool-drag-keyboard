@@ -1,10 +1,19 @@
+/* Variables racine pour faciliter les modifications */
+:root {
+  --start-button-color: #ff0000; /* Rouge */
+  --start-button-color-hover: #cc0000; /* Rouge plus foncé */
+  --start-button-color-active: #990000; /* Rouge encore plus foncé */
+  --thumbnail-background-color: #333; /* Couleur de fond des vignettes */
+  --hidden-thumbnail-background-color: #444; /* Couleur de fond pour les vignettes masquées */
+}
+
+/* Styles pour le conteneur principal */
 .c-media-overview {
   height: 100%;
   overflow: auto;
   position: relative;
   box-sizing: border-box;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -13,56 +22,105 @@
   padding-left: 0;
 }
 
+/* Style pour le menu déroulant de tri */
 .sort-dropdown {
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;  /* Espace entre le menu et les cartes */
+  margin-bottom: 20px;
 }
 
+/* Styles pour les cartes média */
 .c-media-overview__card {
-  cursor: grab; /* Indique que la carte est draggable */
+  cursor: grab;
   position: relative;
   background: var(--thumbnail-background-color);
   color: white;
   box-shadow: 6px 6px 6px #555;
-  width: 300px;
+  flex: 1 1 300px;
+  max-width: 300px;
   margin: 5px;
   font-size: 0.9em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Assure que l'image et le texte sont bien espacés */
-  padding: 10px; /* Ajoute un peu de padding à l'intérieur de la carte */
-
-  &.hidden {
-    scale: 0.8;
-    opacity: 70%;
-    background: var(--hidden-thumbnail-background-color);
-
-    .c-image-media-card__image {
-      filter: grayscale(1);
-    }
-
-    .c-thumbnail-button {
-      border-color: var(--hidden-thumbnail-background-color);
-    }
-  }
+  padding: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Effet au survol des cartes */
+.c-media-overview__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 8px 8px #555;
+}
+
+/* Styles pour les cartes masquées */
+.c-media-overview__card.hidden {
+  transform: scale(0.8);
+  opacity: 70%;
+  background: var(--hidden-thumbnail-background-color);
+}
+
+.c-media-overview__card.hidden .c-image-media-card__image {
+  filter: grayscale(1);
+}
+
+.c-media-overview__card.hidden .c-thumbnail-button {
+  border-color: var(--hidden-thumbnail-background-color);
+}
+
+/* Styles pour les images des cartes */
 .c-media-overview__image {
   cursor: pointer;
   width: 100%;
   display: block;
-  height: 200px; /* Ajuste la hauteur selon ton besoin */
+  height: 200px;
+  object-fit: cover; /* Assure que l'image couvre l'espace sans déformation */
 }
 
-/* Le style pour .c-media-overview__drag-corner a été supprimé */
-
+/* Styles pour le titre des cartes */
 .c-media-overview__card-title {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 100%;  /* Assure que le texte s'adapte à la largeur de la carte */
-  margin-top: 5px;  /* Espace entre l'image et le texte */
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* Styles pour le bouton Start */
+.start-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: var(--start-button-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: var(--start-button-color-hover);
+}
+
+.start-button:active {
+  background-color: var(--start-button-color-active);
+}
+
+/* Ajustements responsives */
+@media (max-width: 600px) {
+  .c-media-overview__card {
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 400px) {
+  .c-media-overview__card {
+    flex-basis: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+  }
 }
